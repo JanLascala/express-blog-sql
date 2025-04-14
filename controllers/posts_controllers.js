@@ -99,27 +99,15 @@ function patch(req, res) {
 //destroy!! destroy!!
 function destroy(req, res) {
 
-    //get mit slug
-    const postsSlug = req.params.slug;
-    // find the post mit id
-    const postsIndex = posts.findIndex(posts => posts.slug === postsSlug);
+    const { id } = req.params;
+
+    connection.query('DELETE FROM posts WHERE id =?', [id], (err) => {
+        if (err) return res.status(500).json({ error: 'failed to delete Post!' });
+        res.sendStatus(204);
+    });
 
 
-    //if not existing formula
-    if (postsIndex === -1) {
-        return res.status(404).json({
-            error: 'post not found',
-            message: 'post not found bad slug',
-        })
-    }
 
-
-    //removal
-    posts.splice(postsIndex, 1);
-    //reposting list with destroyed object
-    res.json(posts);
-
-    res.sendStatus(204);
 }
 
 
