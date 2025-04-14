@@ -1,5 +1,7 @@
 // main require require
 const posts = require('../data/posts.js');
+//require myseql
+const connection = require('../data/db.js')
 
 //index
 function index(req, res) {
