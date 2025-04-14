@@ -2,7 +2,7 @@
 const express = require('express');
 const router = express.Router();
 //export posts jinc
-const posts = require('../data/posts.js')
+//const posts = require('../data/posts.js')
 //export controllers
 const postsControllers = require('../controllers/posts_controllers.js')
 

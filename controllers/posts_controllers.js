@@ -2,15 +2,17 @@
 const connection = require('../data/db.js')
 
 // main require require
-const posts = require('../data/posts.js');
+//const posts = require('../data/posts.js');
 
 //index
 function index(req, res) {
-    const sql = 'SELECT * FROM blog';
+    const sql = 'SELECT * FROM posts';
 
     connection.query(sql, (err, results) => {
         if (err) return res.status(500).json({ error: 'database query failed' });
         res.json(results);
+        //console.log(results);
+        //res.send('return all blogs')
     })
 
 
