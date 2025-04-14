@@ -1,23 +1,19 @@
-// main require require
-const posts = require('../data/posts.js');
 //require myseql
 const connection = require('../data/db.js')
 
+// main require require
+const posts = require('../data/posts.js');
+
 //index
 function index(req, res) {
-    //the whole list here
-    //res.json(posts)
+    const sql = 'SELECT * FROM blog';
 
-    let filteredpost = posts;
-    console.log(req);
-    //apply filter for request in postman ?title =something request 
+    connection.query(sql, (err, results) => {
+        if (err) return res.status(500).json({ error: 'database query failed' });
+        res.json(results);
+    })
 
-    if (req.query.title) {
-        console.log('filter the results');
-        filteredpost = posts.filter(posts => posts.title.includes(req.query.title));
-    }
 
-    res.json(filteredpost);
 };
 //show
 
